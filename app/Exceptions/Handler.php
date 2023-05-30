@@ -65,23 +65,23 @@ class Handler extends ExceptionHandler
     public function render($request, $e): Response|JsonResponse
     {
         if ($e instanceof ThrottleRequestsException) {
-            return $this->response(false, Response::HTTP_TOO_MANY_REQUESTS, 'Too many requests.');
+            return $this->responseBuilder(false, Response::HTTP_TOO_MANY_REQUESTS, 'Too many requests.');
         } elseif ($e instanceof ModelNotFoundException && $request->wantsJson()) {
-            return $this->response(false, Response::HTTP_NOT_FOUND, 'Resource '.str_replace('App', '', $e->getModel()).' not found.');
+            return $this->responseBuilder(false, Response::HTTP_NOT_FOUND, 'Resource '.str_replace('App', '', $e->getModel()).' not found.');
         } elseif ($e instanceof NotFoundHttpException) {
-            return $this->response(false, Response::HTTP_NOT_FOUND, 'Route not found.');
+            return $this->responseBuilder(false, Response::HTTP_NOT_FOUND, 'Route not found.');
         } elseif ($e instanceof MethodNotAllowedHttpException) {
-            return $this->response(false, Response::HTTP_METHOD_NOT_ALLOWED, 'You are not allowed to perform this action.');
+            return $this->responseBuilder(false, Response::HTTP_METHOD_NOT_ALLOWED, 'You are not allowed to perform this action.');
         } elseif ($e instanceof QueryException) {
-            return $this->response(false, Response::HTTP_UNAUTHORIZED, 'Invalid database query.', $e->getMessage());
+            return $this->responseBuilder(false, Response::HTTP_UNAUTHORIZED, 'Invalid database query.', $e->getMessage());
         } elseif ($e instanceof RelationNotFoundException) {
-            return $this->response(false, Response::HTTP_INTERNAL_SERVER_ERROR, 'Undefined relationship.');
+            return $this->responseBuilder(false, Response::HTTP_INTERNAL_SERVER_ERROR, 'Undefined relationship.');
         } elseif ($e instanceof AuthenticationException) {
-            return $this->response(false, Response::HTTP_UNAUTHORIZED, 'User not authenticated.');
+            return $this->responseBuilder(false, Response::HTTP_UNAUTHORIZED, 'User not authenticated.');
         } elseif ($e instanceof AuthorizationException) {
-            return $this->response(false, Response::HTTP_FORBIDDEN, 'This action is unauthorized.');
+            return $this->responseBuilder(false, Response::HTTP_FORBIDDEN, 'This action is unauthorized.');
         } elseif ($e instanceof AccessDeniedHttpException) {
-            return $this->response(false, Response::HTTP_FORBIDDEN, 'This action is unauthorized.');
+            return $this->responseBuilder(false, Response::HTTP_FORBIDDEN, 'This action is unauthorized.');
         }
 
         return parent::render($request, $e);

@@ -12,14 +12,8 @@ final class RemoveHeaders
 {
     public function handle(Request $request, Closure $next): Response
     {
-        /**
-         * @var Response $response
-         */
         $response = $next($request);
 
-        /**
-         * @var string $header
-         */
         foreach ((array) config('headers.remove') as $header) {
             $response->headers->remove(
                 key: $header,

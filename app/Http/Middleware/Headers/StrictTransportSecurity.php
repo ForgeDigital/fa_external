@@ -10,11 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class StrictTransportSecurity
 {
-    public function handle(Request $request, \Closure $next): Response
+    public function handle(Request $request, Closure $next): Response
     {
-        /**
-         * @var Response $response
-         */
         $response = $next($request);
 
         $response->headers->set(
