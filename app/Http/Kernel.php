@@ -21,6 +21,13 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+
+        // App defined header middlewares
+        \App\Http\Middleware\Headers\RemoveHeaders::class,
+        \App\Http\Middleware\Headers\SetReferrerPolicy::class,
+        \App\Http\Middleware\Headers\StrictTransportSecurity::class,
+        \App\Http\Middleware\Headers\CertificateTransparencyPolicy::class,
+        \App\Http\Middleware\Headers\PermissionsPolicy::class,
     ];
 
     /**
