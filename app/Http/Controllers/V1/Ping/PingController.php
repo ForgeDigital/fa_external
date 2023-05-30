@@ -13,10 +13,6 @@ final class PingController
 {
     use ResponseBuilder;
 
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     */
     public function __invoke(Request $request): JsonResponse
     {
         return $this->responseBuilder(true, Response::HTTP_OK, 'Service is online.');
