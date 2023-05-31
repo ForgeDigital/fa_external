@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Middleware\Keys;
+namespace App\Http\Middleware\IPAddress;
 
 use App\Traits\v1\ResponseBuilder;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class ApiKeyMiddleware
+class IPWhiteListMiddleware
 {
     use ResponseBuilder;
+
+    public array $ips = ['172.18.0.1'];
 
     /**
      * Handle an incoming request.
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $apiKey = $request->header('API-KEY');
-
-        if ($apiKey !== config('services.keys.api_key')) {
-            return $this->responseBuilder(false, Response::HTTP_UNAUTHORIZED, 'Unauthorised action.', 'Invalid API key.');
+        if (! in_array($request->ip(), $this->ips)) {
+            return $this->responseBuilder(false, Response::HTTP_UNAUTHORIZED, 'Unauthorised access.', 'Your ip address is not whitelisted');
         }
 
         return $next($request);

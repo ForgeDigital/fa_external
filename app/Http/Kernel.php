@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
      */
     protected $middlewareAliases = [
         'api_key' => \App\Http\Middleware\Keys\ApiKeyMiddleware::class,
+        'ip_address' => \App\Http\Middleware\IPAddress\IPWhiteListMiddleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
