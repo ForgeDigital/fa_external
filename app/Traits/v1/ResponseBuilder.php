@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 trait ResponseBuilder
 {
-    public function responseBuilder(bool $status, int $code, string $message, string $description = null, array $data = null): JsonResponse
+    public function responseBuilder(bool $status, int $code, string $message, string $description = null, mixed $data = null): JsonResponse
     {
         return response()->json([
             'status' => $status,

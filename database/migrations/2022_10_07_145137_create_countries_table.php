@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('countries', function (Blueprint $table) {
+            // ID fields
             $table->id();
             $table->uuid('resource_id')->unique()->nullable(false);
 
+            // Attribute fields
             $table->string('name');
             $table->string('iso3');
             $table->string('iso2');
@@ -36,6 +38,7 @@ return new class extends Migration
             $table->boolean('flag')->default(false);
             $table->text('wikiDataId')->nullable();
 
+            // Timestamps
             $table->timestamps();
             $table->softDeletes();
         });
