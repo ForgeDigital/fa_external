@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class CollectionController extends Controller
+class CountryCollectionController extends Controller
 {
     use ResponseBuilder;
 
@@ -24,6 +24,6 @@ class CollectionController extends Controller
         $page_size = $request->page_size ?? 20;
         $data = CountryResource::collection(Country::query()->paginate($page_size))->response()->getData();
 
-        return $this->collectionResponseBuilder(true, Response::HTTP_OK, 'Country fetched successfully.', 'Collection of countries.', $data);
+        return $this->collectionResponseBuilder(true, Response::HTTP_OK, 'Request successful.', 'Countries fetched successfully.', $data);
     }
 }

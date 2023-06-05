@@ -8,6 +8,9 @@ Route::group(['middleware' => 'api_key'], function () {
     // Ping Route
     Route::prefix('ping')->group(base_path('routes/v1/ping/ping.php'));
 
-    // Country resource
+    // Country resources
     Route::prefix('countries')->group(base_path('routes/v1/country/country.php'));
+
+    // Address resources
+    Route::prefix('addresses')->group(base_path('routes/v1/address/address.php'));
 });
