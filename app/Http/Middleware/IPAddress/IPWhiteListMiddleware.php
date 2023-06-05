@@ -21,7 +21,7 @@ class IPWhiteListMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (! in_array($request->ip(), $this->ips)) {
-            return $this->responseBuilder(false, Response::HTTP_UNAUTHORIZED, 'Unauthorised access.', 'Your ip address is not whitelisted');
+            return $this->resourcesResponseBuilder(false, Response::HTTP_UNAUTHORIZED, 'Unauthorised access.', 'Your ip address is not whitelisted');
         }
 
         return $next($request);

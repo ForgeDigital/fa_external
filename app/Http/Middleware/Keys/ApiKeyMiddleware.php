@@ -21,7 +21,7 @@ final class ApiKeyMiddleware
         $apiKey = $request->header('API-KEY');
 
         if ($apiKey !== config('services.keys.api_key')) {
-            return $this->responseBuilder(false, Response::HTTP_UNAUTHORIZED, 'Unauthorised action.', 'Invalid API key.');
+            return $this->resourcesResponseBuilder(false, Response::HTTP_UNAUTHORIZED, 'Unauthorised action.', 'Invalid API key.');
         }
 
         return $next($request);
