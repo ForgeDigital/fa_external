@@ -16,6 +16,29 @@ class AddressResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            // Resource type and id
+            'type' => 'Customers',
+            'resource_id' => $this->resource->resource_id,
+
+            // Resource exposed attributes
+            'attributes' => [
+                'address' => $this->resource->address,
+                'city' => $this->resource->city,
+                'state' => $this->resource->state,
+                'code' => $this->resource->code,
+
+                'created_at' => $this->resource->created_at->toDateTimeString(),
+                'updated_at' => $this->resource->updated_at->toDateTimeString(),
+            ],
+
+            // Resource relationships
+            'relationships' => [
+            ],
+
+            // Included data per request
+            'included' => [
+            ],
+        ];
     }
 }

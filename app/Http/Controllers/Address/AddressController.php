@@ -15,12 +15,14 @@ use Symfony\Component\HttpFoundation\Response;
 class AddressController extends Controller
 {
     use ResponseBuilder;
+
     /**
      * Handle the incoming request.
      */
     public function __invoke(Address $address): JsonResponse
     {
         $data = new AddressResource($address);
+
         return $this->resourcesResponseBuilder(true, Response::HTTP_OK, 'Request successful.', 'Address fetched successfully.', $data);
     }
 }

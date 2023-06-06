@@ -12,6 +12,7 @@ use Illuminate\Database\Seeder;
 class AddressSeeder extends Seeder
 {
     use TruncateTAble, ForeignKeyChecks;
+
     /**
      * Run the database seeds.
      */

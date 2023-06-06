@@ -23,6 +23,7 @@ trait ResponseBuilder
             'data_meta' => $data->meta,
         ]);
     }
+
     public function resourcesResponseBuilder(bool $status, int $code, string $message, string $description = null, mixed $data = null): JsonResponse
     {
         return response()->json([

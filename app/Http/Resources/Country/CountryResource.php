@@ -21,6 +21,8 @@ class CountryResource extends JsonResource
 
             // Resource exposed attributes
             'attributes' => [
+
+                // Main resource attributes
                 'name' => $this->resource->name,
                 'iso3' => $this->resource->iso3,
                 'iso2' => $this->resource->iso2,
@@ -42,6 +44,7 @@ class CountryResource extends JsonResource
                 'flag' => $this->resource->flag,
                 'wikiDataId' => $this->resource->wikiDataId,
 
+                // Resource timestamps
                 'created_at' => $this->resource->created_at->toDateTimeString(),
                 'updated_at' => $this->resource->updated_at->toDateTimeString(),
             ],

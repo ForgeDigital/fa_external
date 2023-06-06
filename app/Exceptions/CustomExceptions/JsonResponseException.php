@@ -19,6 +19,6 @@ class JsonResponseException extends Exception
 
     public function render($request): JsonResponse
     {
-        return $this->resourcesResponseBuilder( false, $request->code, $request->message, $request->description );
+        return $this->resourcesResponseBuilder(false, $request->code, $request->message, $request->description);
     }
 }

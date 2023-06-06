@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Address;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Address\AddressResource;
 use App\Models\Address\Address;
-use App\Models\Country\Country;
 use App\Traits\v1\ResponseBuilder;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
