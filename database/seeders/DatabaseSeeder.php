@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Database\Seeders\Address\AddressSeeder;
 use Database\Seeders\Country\CountryTableSeeder;
+use Database\Seeders\Customer\CustomerSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,5 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CountryTableSeeder::class);
         $this->call(AddressSeeder::class);
+        $this->call(CustomerSeeder::class);
     }
 }

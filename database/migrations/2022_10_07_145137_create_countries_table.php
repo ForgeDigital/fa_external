@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
-            // ID fields
+        Schema::create('countries', function (Blueprint $table)
+        {
+            // Table ids
             $table->id();
             $table->uuid('resource_id')->unique()->nullable(false);
 
-            // Attribute fields
+            // Table main attributes
             $table->string('name');
             $table->string('iso3');
             $table->string('iso2');
-            $table->string('phonecode');
+            $table->string('phone_code');
             $table->string('capital');
             $table->string('currency');
             $table->string('currency_symbol');

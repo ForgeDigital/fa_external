@@ -17,7 +17,7 @@ class CountryFactory extends Factory
             'name' => $this->faker->country,
             'iso3' => $this->faker->countryISOAlpha3,
             'iso2' => $this->faker->countryISOAlpha3,
-            'phonecode' => $this->faker->randomNumber(1, 3),
+            'phone_code' => $this->faker->randomNumber(1, 3),
             'capital' => $this->faker->city,
             'currency' => $this->faker->currencyCode,
             'currency_symbol' => $this->faker->currencyCode(),

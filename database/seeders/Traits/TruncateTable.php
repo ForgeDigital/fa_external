@@ -6,7 +6,7 @@ namespace Database\Seeders\Traits;
 
 use Illuminate\Support\Facades\DB;
 
-trait TruncateTAble
+trait TruncateTable
 {
     protected function truncateTable($table): void
     {
