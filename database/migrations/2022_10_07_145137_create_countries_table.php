@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table)
-        {
+        Schema::create('countries', function (Blueprint $table) {
             // Table ids
             $table->id();
             $table->uuid('resource_id')->unique()->nullable(false);

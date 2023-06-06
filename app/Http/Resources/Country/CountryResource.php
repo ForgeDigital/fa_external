@@ -16,7 +16,7 @@ class CountryResource extends JsonResource
     {
         return [
             // Resource type and id
-            'type' => 'Customers',
+            'type' => 'Country',
             'resource_id' => $this->resource->resource_id,
 
             // Resource exposed attributes

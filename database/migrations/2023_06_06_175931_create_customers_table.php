@@ -13,8 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table)
-        {
+        Schema::create('customers', function (Blueprint $table) {
             // Table ids
             $table->id();
             $table->uuid('resource_id')->unique()->nullable(false);

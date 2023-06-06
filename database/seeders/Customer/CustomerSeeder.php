@@ -11,6 +11,7 @@ use Illuminate\Database\Seeder;
 class CustomerSeeder extends Seeder
 {
     use TruncateTable;
+
     /**
      * Run the database seeds.
      */

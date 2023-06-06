@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Resources\Address;
+namespace App\Http\Resources\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AddressResource extends JsonResource
+class CustomerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -23,10 +23,18 @@ class AddressResource extends JsonResource
 
             // Resource exposed attributes
             'attributes' => [
-                'address' => $this->resource->address,
-                'city' => $this->resource->city,
-                'state' => $this->resource->state,
-                'code' => $this->resource->code,
+                'first_name' => $this->resource->first_name,
+                'middle_name' => $this->resource->middle_name,
+                'last_name' => $this->resource->last_name,
+
+                'address' => [
+                    'address' => '',
+                    'city' => '',
+                    'state' => '',
+                    'code' => '',
+                ],
+
+                'status' => $this->resource->status,
 
                 'created_at' => $this->resource->created_at->toDateTimeString(),
                 'updated_at' => $this->resource->updated_at->toDateTimeString(),

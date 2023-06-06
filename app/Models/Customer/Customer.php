@@ -15,9 +15,6 @@ class Customer extends Model
 
     protected $guarded = ['id'];
 
-    /**
-     * @return string
-     */
     public function getRouteKeyName(): string
     {
         return 'resource_id';

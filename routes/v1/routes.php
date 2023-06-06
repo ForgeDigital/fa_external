@@ -13,4 +13,7 @@ Route::group(['middleware' => 'api_key'], function () {
 
     // Address resources
     Route::prefix('addresses')->group(base_path('routes/v1/address/address.php'));
+
+    // Customer resources
+    Route::prefix('customers')->group(base_path('routes/v1/customer/customer.php'));
 });
