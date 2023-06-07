@@ -17,3 +17,22 @@ Route::group(['middleware' => 'api_key'], function () {
     // Customer resources
     Route::prefix('customers')->group(base_path('routes/v1/customer/customer.php'));
 });
+
+//
+//// Loading route files
+//Route::group([], function(){
+//
+//    // Iterate through each folder
+//    $dirIterator = new RecursiveDirectoryIterator(__DIR__ . '/');
+//
+//    /** @var RecursiveDirectoryIterator | RecursiveIteratorIterator $recursive */
+//    $recursive = new RecursiveIteratorIterator($dirIterator);
+//
+//    while ($recursive->valid()){
+//        if (!$recursive->isDot() && $recursive->isDir() && $recursive->isFile() && $recursive->isReadable() && $recursive->current()->getExtension() === 'php'){
+//            require $recursive->key();
+//        }
+//
+//        $recursive->next();
+//    }
+//});
