@@ -16,8 +16,6 @@ class CountryCollectionController extends Controller
 
     /**
      * CountryCollectionController constructor
-     *
-     * @param CountryRepositoryInterface $countryRepository
      */
     public function __construct(CountryRepositoryInterface $countryRepository)
     {

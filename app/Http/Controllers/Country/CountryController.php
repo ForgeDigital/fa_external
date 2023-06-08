@@ -5,14 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Country;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Country\CountryResource;
 use App\Models\Country\Country;
 use App\Repository\Country\CountryRepository;
 use App\Repository\Country\CountryRepositoryInterface;
 use App\Traits\v1\ResponseBuilder;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 class CountryController extends Controller
 {
@@ -22,8 +20,6 @@ class CountryController extends Controller
 
     /**
      * CountryCollectionController constructor
-     *
-     * @param CountryRepositoryInterface $countryRepository
      */
     public function __construct(CountryRepositoryInterface $countryRepository)
     {

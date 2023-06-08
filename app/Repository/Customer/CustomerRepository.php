@@ -13,21 +13,14 @@ class CustomerRepository implements CustomerRepositoryInterface
 {
     use ResponseBuilder;
 
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     */
     public function getAll(Request $request): JsonResponse
-    {}
+    {
+    }
 
-    /**
-     * @param Request $request
-     * @param Customer $customer
-     * @return JsonResponse
-     */
     public function findOne(Request $request, Customer $customer): JsonResponse
     {
         $data = new CustomerResource($customer);
+
         return $this->resourcesResponseBuilder(true, Response::HTTP_OK, 'Request successful.', '', $data);
     }
 }

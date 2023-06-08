@@ -13,10 +13,6 @@ class CountryRepository implements CountryRepositoryInterface
 {
     use ResponseBuilder;
 
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     */
     public function all(Request $request): JsonResponse
     {
         $page_size = $request->page_size ?? 20;
@@ -25,14 +21,10 @@ class CountryRepository implements CountryRepositoryInterface
         return $this->collectionResponseBuilder(true, Response::HTTP_OK, 'Request successful.', 'Countries fetched successfully.', $data);
     }
 
-    /**
-     * @param Request $request
-     * @param Country $country
-     * @return JsonResponse
-     */
     public function findOne(Request $request, Country $country): JsonResponse
     {
         $data = new CountryResource($country);
+
         return $this->resourcesResponseBuilder(true, Response::HTTP_OK, 'Request successful.', 'Country fetched successfully.', $data);
     }
 }

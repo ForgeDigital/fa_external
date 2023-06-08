@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Address;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Address\AddressResource;
 use App\Models\Address\Address;
 use App\Repository\Address\AddressRepositoryInterface;
 use App\Traits\v1\ResponseBuilder;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 class AddressController extends Controller
 {
@@ -19,9 +17,6 @@ class AddressController extends Controller
 
     protected AddressRepositoryInterface $theRepository;
 
-    /**
-     * @param AddressRepositoryInterface $addressRepository
-     */
     public function __construct(AddressRepositoryInterface $addressRepository)
     {
         $this->theRepository = $addressRepository;
@@ -30,7 +25,7 @@ class AddressController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request,Address $address): JsonResponse
+    public function __invoke(Request $request, Address $address): JsonResponse
     {
         return $this->theRepository->findOne($request, $address);
     }
