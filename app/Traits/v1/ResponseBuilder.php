@@ -8,6 +8,15 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 trait ResponseBuilder
 {
+    /**
+     * @param bool $status
+     * @param int $code
+     * @param string $message
+     * @param string|null $description
+     * @param mixed|null $data
+     * @return JsonResponse
+     *
+     */
     public function collectionResponseBuilder(bool $status, int $code, string $message, string $description = null, mixed $data = null): JsonResponse
     {
         return response()->json([
@@ -24,6 +33,14 @@ trait ResponseBuilder
         ]);
     }
 
+    /**
+     * @param bool $status
+     * @param int $code
+     * @param string $message
+     * @param string|null $description
+     * @param mixed|null $data
+     * @return JsonResponse
+     */
     public function resourcesResponseBuilder(bool $status, int $code, string $message, string $description = null, mixed $data = null): JsonResponse
     {
         return response()->json([

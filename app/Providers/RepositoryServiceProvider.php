@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Repository\Address\AddressRepository;
-use App\Repository\Address\AddressRepositoryInterface;
-use App\Repository\Country\CountryRepository;
-use App\Repository\Country\CountryRepositoryInterface;
-use App\Repository\Customer\CustomerRepository;
-use App\Repository\Customer\CustomerRepositoryInterface;
+use App\Repositories\Addresses\AddressesRepository;
+use App\Repositories\Addresses\AddressesRepositoryInterface;
+use App\Repositories\Countries\CountriesRepository;
+use App\Repositories\Countries\CountriesRepositoryInterface;
+use App\Repositories\Customers\CustomersRepository;
+use App\Repositories\Customers\CustomersRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -19,9 +19,9 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(CountryRepositoryInterface::class, CountryRepository::class);
-        $this->app->bind(AddressRepositoryInterface::class, AddressRepository::class);
-        $this->app->bind(CustomerRepositoryInterface::class, CustomerRepository::class);
+        $this->app->bind(CountriesRepositoryInterface::class, CountriesRepository::class);
+        $this->app->bind(AddressesRepositoryInterface::class, AddressesRepository::class);
+        $this->app->bind(CustomersRepositoryInterface::class, CustomersRepository::class);
     }
 
     /**

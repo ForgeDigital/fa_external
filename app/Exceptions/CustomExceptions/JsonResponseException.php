@@ -6,17 +6,26 @@ namespace App\Exceptions\CustomExceptions;
 
 use App\Traits\v1\ResponseBuilder;
 use Exception;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class JsonResponseException extends Exception
 {
     use ResponseBuilder;
 
-    public function report($request): void
+    /**
+     * @param Request $request
+     * @return void
+     */
+    public function report(Request $request): void
     {
-        logger($request->message);
+        logger(message: $request->message);
     }
 
+    /**
+     * @param $request
+     * @return JsonResponse
+     */
     public function render($request): JsonResponse
     {
         return $this->resourcesResponseBuilder(false, $request->code, $request->message, $request->description);
