@@ -13,10 +13,6 @@ class AddressesRepository implements AddressesRepositoryInterface
 {
     use ResponseBuilder;
 
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     */
     public function fetchAll(Request $request): JsonResponse
     {
         $page_size = $request->page_size ?? 20;
@@ -25,11 +21,6 @@ class AddressesRepository implements AddressesRepositoryInterface
         return $this->collectionResponseBuilder(true, Response::HTTP_OK, 'Request successful.', 'Addresses fetched successfully.', $data);
     }
 
-    /**
-     * @param Request $request
-     * @param Address $address
-     * @return JsonResponse
-     */
     public function findOne(Request $request, Address $address): JsonResponse
     {
         $data = new AddressesResource($address);

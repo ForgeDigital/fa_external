@@ -13,19 +13,11 @@ class JsonResponseException extends Exception
 {
     use ResponseBuilder;
 
-    /**
-     * @param Request $request
-     * @return void
-     */
     public function report(Request $request): void
     {
         logger(message: $request->message);
     }
 
-    /**
-     * @param $request
-     * @return JsonResponse
-     */
     public function render($request): JsonResponse
     {
         return $this->resourcesResponseBuilder(false, $request->code, $request->message, $request->description);

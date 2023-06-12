@@ -9,7 +9,7 @@ trait HasPassword
 {
     public static function bootHasPassword(): void
     {
-//        $request->input('data.attributes.password');
-        static::creating(fn (Model $model) => $model -> password = Hash::make('password'));
+        //        $request->input('data.attributes.password');
+        static::creating(fn (Model $model) => $model->password = Hash::make('password'));
     }
 }

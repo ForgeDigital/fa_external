@@ -17,13 +17,11 @@ class CustomersRepository implements CustomersRepositoryInterface
     use ResponseBuilder;
 
     /**
-     * @param Request $request
-     * @return JsonResponse
      * @throws Throwable
      */
     public function store(Request $request): JsonResponse
     {
-        return DB::transaction(function () use ($request){
+        return DB::transaction(function () use ($request) {
             $stored = Customer::query()->create([
                 'first_name' => data_get($request, 'data.attributes.first_name'),
                 'last_name' => data_get($request, 'data.attributes.last_name'),
@@ -44,11 +42,6 @@ class CustomersRepository implements CustomersRepositoryInterface
         });
     }
 
-    /**
-     * @param Request $request
-     * @param Customer $customer
-     * @return JsonResponse
-     */
     public function findOne(Request $request, Customer $customer): JsonResponse
     {
         $data = new CustomersResource($customer);

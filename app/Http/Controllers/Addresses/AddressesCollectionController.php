@@ -16,9 +16,6 @@ class AddressesCollectionController extends Controller
 
     protected AddressesRepositoryInterface $theRepository;
 
-    /**
-     * @param AddressesRepositoryInterface $addressRepository
-     */
     public function __construct(AddressesRepositoryInterface $addressRepository)
     {
         $this->theRepository = $addressRepository;

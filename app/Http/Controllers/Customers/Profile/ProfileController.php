@@ -14,9 +14,6 @@ class ProfileController extends Controller
 {
     private CustomersRepositoryInterface $theRepository;
 
-    /**
-     * @param CustomersRepositoryInterface $customerRepository
-     */
     public function __construct(CustomersRepositoryInterface $customerRepository)
     {
         $this->theRepository = $customerRepository;

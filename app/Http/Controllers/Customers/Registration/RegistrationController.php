@@ -13,9 +13,6 @@ class RegistrationController extends Controller
 {
     private CustomersRepositoryInterface $theRepository;
 
-    /**
-     * @param CustomersRepositoryInterface $customersRepository
-     */
     public function __construct(CustomersRepositoryInterface $customersRepository)
     {
         $this->theRepository = $customersRepository;
