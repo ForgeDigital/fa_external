@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Customers;
 
+use App\Http\Requests\Customers\Registration\RegistrationRequest;
 use App\Http\Resources\Customers\CustomersResource;
 use App\Models\Customer\Customer;
 use App\Traits\v1\ResponseBuilder;
@@ -19,17 +20,17 @@ class CustomersRepository implements CustomersRepositoryInterface
     /**
      * @throws Throwable
      */
-    public function store(Request $request): JsonResponse
+    public function store(RegistrationRequest $registrationRequest): JsonResponse
     {
-        return DB::transaction(function () use ($request) {
+        return DB::transaction(function () use ($registrationRequest) {
             $stored = Customer::query()->create([
-                'first_name' => data_get($request, 'data.attributes.first_name'),
-                'last_name' => data_get($request, 'data.attributes.last_name'),
+                'first_name' => data_get($registrationRequest, 'data.attributes.first_name'),
+                'last_name' => data_get($registrationRequest, 'data.attributes.last_name'),
 
-                'phone' => data_get($request, 'data.attributes.phone'),
-                'email' => data_get($request, 'data.attributes.email'),
+                'phone' => data_get($registrationRequest, 'data.attributes.phone'),
+                'email' => data_get($registrationRequest, 'data.attributes.email'),
 
-                'password' => Hash::make(data_get($request, 'data.attributes.email')),
+                'password' => Hash::make(data_get($registrationRequest, 'data.attributes.email')),
             ]);
 
             return $this->resourcesResponseBuilder(

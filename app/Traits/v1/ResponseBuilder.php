@@ -38,4 +38,19 @@ trait ResponseBuilder
             'data' => $data,
         ]);
     }
+
+    public function unprocessableEntityResponseBuilder(bool $status, int $code, string $message, string $description = null, mixed $error = null): JsonResponse
+    {
+        return response()->json([
+            'status' => $status,
+            'code' => $code,
+            'message' => $message,
+            'description' => $description,
+            'meta' => [
+                'version' => '1.0',
+                'timestamp' => now()->toDateTime(),
+            ],
+            'errors' => $error,
+        ]);
+    }
 }

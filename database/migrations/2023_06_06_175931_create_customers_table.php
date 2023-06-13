@@ -29,12 +29,14 @@ return new class extends Migration
             $table->string('phone')->unique()->nullable(false);
             $table->string('email')->unique()->nullable(false);
 
+            $table->string('password');
             $table->string('avatar')->nullable();
+
+            $table->string('verification_code')->unique()->nullable(true);
+            $table->dateTime('code_expiration_date')->nullable(true);
 
             $table->boolean('verified')->default(false);
             $table->string('verified_by')->unique()->nullable();
-
-            $table->string('password');
 
             $table->string('status')->default('Pending');
             $table->boolean('kyc_status')->default(false);
