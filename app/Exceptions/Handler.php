@@ -69,7 +69,7 @@ class Handler extends ExceptionHandler
         } elseif ($e instanceof ModelNotFoundException && $request->wantsJson()) {
             return $this->resourcesResponseBuilder(false, Response::HTTP_NOT_FOUND, 'Resource '.str_replace('App', '', $e->getModel()).' not found.');
         } elseif ($e instanceof NotFoundHttpException) {
-            return $this->resourcesResponseBuilder(false, Response::HTTP_NOT_FOUND, 'Route not found.');
+            return $this->resourcesResponseBuilder(false, Response::HTTP_NOT_FOUND, 'Route not found.', 'The resources your are looking for does not exist.');
         } elseif ($e instanceof MethodNotAllowedHttpException) {
             return $this->resourcesResponseBuilder(false, Response::HTTP_METHOD_NOT_ALLOWED, 'You are not allowed to perform this action.');
         } elseif ($e instanceof QueryException) {

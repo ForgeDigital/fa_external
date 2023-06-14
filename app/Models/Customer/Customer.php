@@ -6,11 +6,11 @@ namespace App\Models\Customer;
 
 use App\Models\Traits\HasPassword;
 use App\Models\Traits\HasUuid;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Customer extends Model
+class Customer extends User
 {
     use HasFactory, SoftDeletes, HasUuid, HasPassword;
 
