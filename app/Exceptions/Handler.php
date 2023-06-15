@@ -77,7 +77,7 @@ class Handler extends ExceptionHandler
         } elseif ($e instanceof RelationNotFoundException) {
             return $this->resourcesResponseBuilder(false, Response::HTTP_INTERNAL_SERVER_ERROR, 'Undefined relationship.');
         } elseif ($e instanceof AuthenticationException) {
-            return $this->resourcesResponseBuilder(false, Response::HTTP_UNAUTHORIZED, 'User not authenticated.');
+            return $this->resourcesResponseBuilder(false, Response::HTTP_UNAUTHORIZED, 'Unauthorised Request.', 'User not authenticated.');
         } elseif ($e instanceof AuthorizationException) {
             return $this->resourcesResponseBuilder(false, Response::HTTP_FORBIDDEN, 'This action is unauthorized.');
         } elseif ($e instanceof AccessDeniedHttpException) {

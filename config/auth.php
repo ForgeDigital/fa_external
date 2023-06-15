@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'customer',
+        'guard' => 'customers',
         'passwords' => 'users',
     ],
 
@@ -36,14 +36,19 @@ return [
     */
 
     'guards' => [
-        'customer' => [
+        'users' => [
             'driver' => 'jwt',
-            'provider' => 'customers'
+            'provider' => 'user'
         ],
 
-        'staff' => [
+        'customers' => [
             'driver' => 'jwt',
-            'provider' => 'staffs'
+            'provider' => 'customer'
+        ],
+
+        'staffs' => [
+            'driver' => 'jwt',
+            'provider' => 'staff'
         ]
     ],
 
@@ -65,17 +70,17 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'user' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
 
-        'customers' => [
+        'customer' => [
             'driver' => 'eloquent',
             'model' => App\Models\Customer\Customer::class,
         ],
 
-        'staffs' => [
+        'staff' => [
             'driver' => 'eloquent',
 //            'model' => App\Models\Customer\Customer::class,
         ]

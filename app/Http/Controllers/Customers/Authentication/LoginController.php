@@ -13,22 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 class LoginController extends Controller
 {
     use ResponseBuilder;
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-//    public function __construct()
-//    {
-//        $this->middleware('auth:customer', ['except' => ['login']]);
-//    }
 
     /**
      * Handle the incoming request.
      */
-    public function __invoke(LoginRequest $LoginRequest): JsonResponse
+    public function __invoke(LoginRequest $loginRequest): JsonResponse
     {
-        if (!$token = auth()->attempt($LoginRequest->input('data.attributes'))) {
+        $credentials = $loginRequest->only('data.attributes.email', 'data.attributes.password');
+        if (!$token = auth()->attempt($credentials)) {
             return $this->resourcesResponseBuilder(
                 false,
                 Response::HTTP_UNAUTHORIZED,
@@ -40,12 +32,16 @@ class LoginController extends Controller
         return $this->respondWithToken($token);
     }
 
+    /**
+     * @param $token
+     * @return JsonResponse
+     */
     protected function respondWithToken($token): JsonResponse
     {
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60 //mention the guard name inside the auth fn
+            'expires_in' => auth()->factory()->getTTL() * 60 //mention the guard name inside the auth fn
         ]);
     }
 }
