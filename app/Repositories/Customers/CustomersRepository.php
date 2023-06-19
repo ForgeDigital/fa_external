@@ -43,9 +43,9 @@ class CustomersRepository implements CustomersRepositoryInterface
         });
     }
 
-    public function findOne(Request $request, Customer $customer): JsonResponse
+    public function findOne(Request $request): JsonResponse
     {
-        $data = new CustomersResource($customer);
+        $data = new CustomersResource(auth()->user());
 
         return $this->resourcesResponseBuilder(true, Response::HTTP_OK, 'Request successful.', '', $data);
     }

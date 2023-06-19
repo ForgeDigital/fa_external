@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Customers\Profile;
 
 use App\Http\Controllers\Controller;
-use App\Models\Customer\Customer;
 use App\Repositories\Customers\CustomersRepositoryInterface;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,8 +21,8 @@ class ProfileController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, Customer $customer): JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
-        return $this->theRepository->findOne($request, $customer);
+        return $this->theRepository->findOne($request);
     }
 }

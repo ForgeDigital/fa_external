@@ -9,7 +9,7 @@ Route::group(['prefix' => 'customers', 'as' => 'customers.'], function () {
     Route::post('login', \App\Http\Controllers\Customers\Authentication\LoginController::class)->name('login');
 
     // Authentication routes
-    Route::group(['middleware' => 'auth:customers'], function () {
-        Route::get('{customer}/profile', \App\Http\Controllers\Customers\Profile\ProfileController::class)->name('show')->whereUuid('customer');
+    Route::group(['middleware' => 'auth:customer'], function () {
+        Route::get('profile', \App\Http\Controllers\Customers\Profile\ProfileController::class)->name('show');
     });
 });

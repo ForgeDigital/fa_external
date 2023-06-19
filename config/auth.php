@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'customers',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -36,20 +36,20 @@ return [
     */
 
     'guards' => [
-        'users' => [
+        'api' => [
             'driver' => 'jwt',
-            'provider' => 'user'
+            'provider' => 'users',
         ],
 
-        'customers' => [
+        'customer' => [
             'driver' => 'jwt',
-            'provider' => 'customer'
+            'provider' => 'customers',
         ],
 
-        'staffs' => [
+        'staff' => [
             'driver' => 'jwt',
-            'provider' => 'staff'
-        ]
+            'provider' => 'staffs',
+        ],
     ],
 
     /*
@@ -70,20 +70,20 @@ return [
     */
 
     'providers' => [
-        'user' => [
+        'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
 
-        'customer' => [
+        'customers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Customer\Customer::class,
         ],
 
-        'staff' => [
+        'staffs' => [
             'driver' => 'eloquent',
-//            'model' => App\Models\Customer\Customer::class,
-        ]
+            //            'model' => App\Models\Customer\Customer::class,
+        ],
     ],
 
     /*
@@ -126,5 +126,4 @@ return [
     */
 
     'password_timeout' => 10800,
-
 ];

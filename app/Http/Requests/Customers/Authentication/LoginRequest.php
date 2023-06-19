@@ -18,13 +18,37 @@ class LoginRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        return
+            [
+                'data' => ['required', 'array'],
+                'data.type' => ['required', 'in:Customers'],
+                //                'data.attributes.email'                                     => [ 'required', 'email', new CheckAccountPending(), new CheckAccountSuspension()],
+                'data.attributes.email' => ['required', 'email'],
+                'data.attributes.password' => ['required', 'string', 'min:6', 'max:50'],
+            ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public function messages(): array
+    {
+        return
+            [
+                'data.required' => 'The data field is invalid',
+
+                'data.type.required' => 'The type is required',
+                'data.type.string' => 'The type must be of a string',
+                'data.type.in' => 'The type is invalid',
+
+                'data.attributes.email.required' => 'The email is required',
+                'data.attributes.email.email' => 'The email address is invalid',
+
+                'data.attributes.password.required' => 'The password is required',
+                'data.attributes.password.min' => 'The password must be more than 5 characters',
+            ];
     }
 }

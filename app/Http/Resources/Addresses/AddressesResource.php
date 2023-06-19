@@ -7,6 +7,9 @@ namespace App\Http\Resources\Addresses;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin \App\Models\Address\Address
+ */
 class AddressesResource extends JsonResource
 {
     /**
@@ -19,17 +22,17 @@ class AddressesResource extends JsonResource
         return [
             // Resource type and id
             'type' => 'Addresses',
-            'resource_id' => $this->resource->resource_id,
+            'resource_id' => $this->resource_id,
 
             // Resource exposed attributes
             'attributes' => [
-                'address' => $this->resource->address,
-                'city' => $this->resource->city,
-                'state' => $this->resource->state,
-                'code' => $this->resource->code,
+                'address' => $this->address,
+                'city' => $this->city,
+                'state' => $this->state,
+                'code' => $this->code,
 
-                'created_at' => $this->resource->created_at->toDateTimeString(),
-                'updated_at' => $this->resource->updated_at->toDateTimeString(),
+                'created_at' => $this->created_at->toDateTimeString(),
+                'updated_at' => $this->updated_at->toDateTimeString(),
             ],
 
             // Resource relationships

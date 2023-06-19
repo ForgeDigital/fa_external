@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\Customers;
 
+use App\Models\Customer\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin Customer
+ */
 class CustomersResource extends JsonResource
 {
     /**
@@ -19,13 +23,13 @@ class CustomersResource extends JsonResource
         return [
             // Resource type and id
             'type' => 'Customers',
-            'resource_id' => $this->resource->resource_id,
+            'resource_id' => $this->resource_id,
 
             // Resource exposed attributes
             'attributes' => [
-                'first_name' => $this->resource->first_name,
-                'middle_name' => $this->resource->middle_name,
-                'last_name' => $this->resource->last_name,
+                'first_name' => $this->first_name,
+                'middle_name' => $this->middle_name,
+                'last_name' => $this->last_name,
 
                 'address' => [
                     'address' => '',
@@ -34,10 +38,10 @@ class CustomersResource extends JsonResource
                     'code' => '',
                 ],
 
-                'status' => $this->resource->status,
+                'status' => $this->status,
 
-                'created_at' => $this->resource->created_at->toDateTimeString(),
-                'updated_at' => $this->resource->updated_at->toDateTimeString(),
+                'created_at' => $this->created_at->toDateTimeString(),
+                'updated_at' => $this->updated_at->toDateTimeString(),
             ],
 
             // Resource relationships

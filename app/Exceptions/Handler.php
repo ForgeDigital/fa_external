@@ -62,7 +62,7 @@ class Handler extends ExceptionHandler
      *
      * @throws Exception|Throwable
      */
-    public function render($request, $e): Response|JsonResponse
+    public function render($request, $e): JsonResponse
     {
         if ($e instanceof ThrottleRequestsException) {
             return $this->resourcesResponseBuilder(false, Response::HTTP_TOO_MANY_REQUESTS, 'Too many requests.');
@@ -85,6 +85,11 @@ class Handler extends ExceptionHandler
         }
 
         return parent::render($request, $e);
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception): JsonResponse
+    {
+        return $this->resourcesResponseBuilder(false, Response::HTTP_FORBIDDEN, 'This action is unauthorized.', 'User not authenticated.');
     }
 
     /**

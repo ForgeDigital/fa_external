@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Traits\v1;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Illuminate\Http\JsonResponse;
 
 trait ResponseBuilder
 {
@@ -51,6 +51,24 @@ trait ResponseBuilder
                 'timestamp' => now()->toDateTime(),
             ],
             'errors' => $error,
+        ]);
+    }
+
+    /**
+     * @param  array  $token
+     */
+    public function tokenResponseBuilder(bool $status, int $code, string $message, mixed $token = null, mixed $user = null): JsonResponse
+    {
+        return response()->json([
+            'status' => $status,
+            'code' => $code,
+            'message' => $message,
+            'meta' => [
+                'version' => '1.0',
+                'timestamp' => now()->toDateTime(),
+            ],
+            'token' => $token,
+            'data' => $user,
         ]);
     }
 }
