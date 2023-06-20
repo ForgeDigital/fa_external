@@ -71,13 +71,13 @@ class Handler extends ExceptionHandler
         } elseif ($e instanceof NotFoundHttpException) {
             return $this->resourcesResponseBuilder(false, Response::HTTP_NOT_FOUND, 'Route not found.', 'The resources your are looking for does not exist.');
         } elseif ($e instanceof MethodNotAllowedHttpException) {
-            return $this->resourcesResponseBuilder(false, Response::HTTP_METHOD_NOT_ALLOWED, 'You are not allowed to perform this action.');
+            return $this->resourcesResponseBuilder(false, Response::HTTP_METHOD_NOT_ALLOWED, 'Method not allowed', 'You are not allowed to perform this action.');
         } elseif ($e instanceof QueryException) {
             return $this->resourcesResponseBuilder(false, Response::HTTP_UNAUTHORIZED, 'Invalid database query.', $e->getMessage());
         } elseif ($e instanceof RelationNotFoundException) {
             return $this->resourcesResponseBuilder(false, Response::HTTP_INTERNAL_SERVER_ERROR, 'Undefined relationship.');
         } elseif ($e instanceof AuthenticationException) {
-            return $this->resourcesResponseBuilder(false, Response::HTTP_UNAUTHORIZED, 'Unauthorised Request.', 'User not authenticated.');
+            return $this->resourcesResponseBuilder(false, Response::HTTP_UNAUTHORIZED, 'Unauthorised Request.', 'User not authenticated to perform this action.');
         } elseif ($e instanceof AuthorizationException) {
             return $this->resourcesResponseBuilder(false, Response::HTTP_FORBIDDEN, 'This action is unauthorized.');
         } elseif ($e instanceof AccessDeniedHttpException) {
@@ -85,11 +85,6 @@ class Handler extends ExceptionHandler
         }
 
         return parent::render($request, $e);
-    }
-
-    protected function unauthenticated($request, AuthenticationException $exception): JsonResponse
-    {
-        return $this->resourcesResponseBuilder(false, Response::HTTP_FORBIDDEN, 'This action is unauthorized.', 'User not authenticated.');
     }
 
     /**

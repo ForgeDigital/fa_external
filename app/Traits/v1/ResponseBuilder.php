@@ -54,9 +54,6 @@ trait ResponseBuilder
         ]);
     }
 
-    /**
-     * @param  array  $token
-     */
     public function tokenResponseBuilder(bool $status, int $code, string $message, mixed $token = null, mixed $user = null): JsonResponse
     {
         return response()->json([

@@ -47,6 +47,6 @@ class CustomersRepository implements CustomersRepositoryInterface
     {
         $data = new CustomersResource(auth()->user());
 
-        return $this->resourcesResponseBuilder(true, Response::HTTP_OK, 'Request successful.', '', $data);
+        return $this->resourcesResponseBuilder(true, Response::HTTP_OK, 'Request successful.', null, $data);
     }
 }

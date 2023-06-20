@@ -26,14 +26,13 @@ class LoginController extends Controller
                 Response::HTTP_UNAUTHORIZED,
                 'Authentication failed.',
                 'Either email / phone number or password is incorrect. Check and try again.',
-
             );
         }
 
         return $this->tokenResponseBuilder(
             true,
             Response::HTTP_OK,
-            'Authentication failed.',
+            'Login successful.',
             $this->respondWithToken($token)->original,
             new CustomersResource(auth()->guard('customer')->user()),
         );
@@ -44,7 +43,7 @@ class LoginController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60, //mention the guard name inside the auth fn
+            'expires_in' => auth('customer')->factory()->getTTL() * 120, //mention the guard name inside the auth fn
         ]);
     }
 }
