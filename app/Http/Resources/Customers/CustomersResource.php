@@ -31,6 +31,14 @@ class CustomersResource extends JsonResource
                 'middle_name' => $this->middle_name,
                 'last_name' => $this->last_name,
 
+                'gender' => $this->gender,
+                'date_of_birth' => $this->dob,
+
+                'phone' => $this->phone,
+                'email' => $this->email,
+
+                'avatar' => $this->avatar,
+
                 'address' => [
                     'address' => '',
                     'city' => '',

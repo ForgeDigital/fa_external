@@ -16,13 +16,17 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             // Table ids
             $table->id();
+            $table->unsignedBigInteger('customer_id');
             $table->uuid('resource_id')->unique()->nullable(false);
 
             // Table main attributes
             $table->string('address');
             $table->string('city');
             $table->string('state');
-            $table->string('code');
+            $table->string('code')->nullable();
+
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
 
             // Table timestamps
             $table->timestamps();

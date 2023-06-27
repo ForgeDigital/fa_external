@@ -30,7 +30,7 @@ class CustomersRepository implements CustomersRepositoryInterface
                 'phone' => data_get($registrationRequest, 'data.attributes.phone'),
                 'email' => data_get($registrationRequest, 'data.attributes.email'),
 
-                'password' => Hash::make(data_get($registrationRequest, 'data.attributes.email')),
+                'password' => Hash::make(data_get($registrationRequest, 'data.attributes.password')),
             ]);
 
             return $this->resourcesResponseBuilder(

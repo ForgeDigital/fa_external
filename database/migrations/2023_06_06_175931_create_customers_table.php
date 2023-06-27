@@ -39,7 +39,6 @@ return new class extends Migration
             $table->string('verified_by')->unique()->nullable();
 
             $table->string('status')->default('Pending');
-            $table->boolean('kyc_status')->default(false);
 
             // Table timestamps
             $table->timestamps();

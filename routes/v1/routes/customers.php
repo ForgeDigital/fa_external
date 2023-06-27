@@ -12,8 +12,14 @@ Route::group(['prefix' => 'customers', 'as' => 'customers.'], function () {
     });
 
     // Protected routes
-    Route::group(['middleware' => 'auth:staff'], function () {
+    Route::group(['middleware' => 'auth:customer'], function () {
         Route::get('profile', \App\Http\Controllers\Customers\Profile\ProfileController::class)->name('show');
         Route::post('logout', \App\Http\Controllers\Customers\Authentication\LogoutController::class)->name('logout');
+
+        // Address
+        Route::group(['prefix' => 'addresses', 'as' => 'addresses.'], function () {
+            Route::post('', \App\Http\Controllers\Customers\Address\CreateAddressController::class)->name('create');
+            Route::get('', \App\Http\Controllers\Customers\Address\GetAddressController::class)->name('show');
+        });
     });
 });

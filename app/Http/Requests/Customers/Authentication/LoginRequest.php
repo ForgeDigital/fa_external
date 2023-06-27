@@ -4,10 +4,32 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Customers\Authentication;
 
+use App\Rules\Customer\CheckAccountPending;
+use App\Rules\Customer\CheckAccountSuspension;
+use App\Traits\v1\ResponseBuilder;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoginRequest extends FormRequest
 {
+    use ResponseBuilder;
+
+    protected function failedValidation(Validator $validator): JsonResponse
+    {
+        throw new HttpResponseException(
+            $this->unprocessableEntityResponseBuilder(
+                true,
+                Response::HTTP_UNPROCESSABLE_ENTITY,
+                'Unprocessable request.',
+                'The request is invalid. Check the request and try again.',
+                $validator->errors()->all()
+            )
+        );
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -25,8 +47,7 @@ class LoginRequest extends FormRequest
             [
                 'data' => ['required', 'array'],
                 'data.type' => ['required', 'in:Customers'],
-                //                'data.attributes.email'                                     => [ 'required', 'email', new CheckAccountPending(), new CheckAccountSuspension()],
-                'data.attributes.email' => ['required', 'email'],
+                'data.attributes.email' => ['required', 'email', new CheckAccountPending, new CheckAccountSuspension],
                 'data.attributes.password' => ['required', 'string', 'min:6', 'max:50'],
             ];
     }

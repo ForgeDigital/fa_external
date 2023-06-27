@@ -82,7 +82,7 @@ return [
 
         'staffs' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Customer\Customer::class,
+            //            'model' => App\Models\Customer\Customer::class,
         ],
     ],
 
