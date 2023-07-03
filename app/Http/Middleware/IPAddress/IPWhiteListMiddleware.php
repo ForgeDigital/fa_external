@@ -13,7 +13,7 @@ class IPWhiteListMiddleware
 {
     use ResponseBuilder;
 
-    public array $ips = ['172.18.0.1'];
+    public array $ips = ['172.18.0.1', '172.21.0.1'];
 
     /**
      * Handle an incoming request.

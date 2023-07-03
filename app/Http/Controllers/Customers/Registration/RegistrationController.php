@@ -19,9 +19,6 @@ class RegistrationController extends Controller
         $this->theRepository = $customersRepository;
     }
 
-    /**
-     * Handle the incoming request.
-     */
     public function __invoke(RegistrationRequest $registrationRequest): JsonResponse
     {
         return $this->theRepository->store($registrationRequest);

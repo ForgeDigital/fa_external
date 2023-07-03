@@ -40,10 +40,13 @@ class CustomersResource extends JsonResource
                 'avatar' => $this->avatar,
 
                 'address' => [
-                    'address' => '',
-                    'city' => '',
-                    'state' => '',
-                    'code' => '',
+                    'address' => $this->address->address,
+                    'city' => $this->address->city,
+                    'state' => $this->address->state,
+
+                    'code' => $this->address->code,
+                    'longitude' => $this->address->longitude,
+                    'latitude' => $this->address->latitude,
                 ],
 
                 'status' => $this->status,
