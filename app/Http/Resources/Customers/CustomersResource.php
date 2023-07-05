@@ -23,36 +23,26 @@ class CustomersResource extends JsonResource
         return [
             // Resource type and id
             'type' => 'Customers',
-            'resource_id' => $this->resource_id,
+            'resource_id' => $this->resource->resource_id,
 
             // Resource exposed attributes
             'attributes' => [
-                'first_name' => $this->first_name,
-                'middle_name' => $this->middle_name,
-                'last_name' => $this->last_name,
+                'first_name' => $this->resource->first_name,
+                'middle_name' => $this->resource->middle_name,
+                'last_name' => $this->resource->last_name,
 
-                'gender' => $this->gender,
-                'date_of_birth' => $this->dob,
+                'gender' => $this->resource->gender,
+                'date_of_birth' => $this->resource->dob,
 
-                'phone' => $this->phone,
-                'email' => $this->email,
+                'phone' => $this->resource->phone,
+                'email' => $this->resource->email,
 
-                'avatar' => $this->avatar,
+                'avatar' => $this->resource->avatar,
 
-                'address' => [
-                    'address' => $this->address->address,
-                    'city' => $this->address->city,
-                    'state' => $this->address->state,
+                'status' => $this->resource->status,
 
-                    'code' => $this->address->code,
-                    'longitude' => $this->address->longitude,
-                    'latitude' => $this->address->latitude,
-                ],
-
-                'status' => $this->status,
-
-                'created_at' => $this->created_at->toDateTimeString(),
-                'updated_at' => $this->updated_at->toDateTimeString(),
+                'created_at' => $this->resource->created_at->toDateTimeString(),
+                'updated_at' => $this->resource->updated_at->toDateTimeString(),
             ],
 
             // Resource relationships

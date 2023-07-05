@@ -6,21 +6,17 @@ namespace App\Http\Controllers\Customers\Registration;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Customers\Registration\RegistrationRequest;
-use App\Repositories\Customers\CustomersRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Actions\Registration\RegistrationAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Throwable;
 
 class RegistrationController extends Controller
 {
-    private CustomersRepositoryInterface $theRepository;
-
-    public function __construct(CustomersRepositoryInterface $customersRepository)
+    /**
+     * @throws Throwable
+     */
+    public function __invoke(RegistrationRequest $registrationRequest, RegistrationAction $registrationAction): JsonResponse
     {
-        $this->theRepository = $customersRepository;
-    }
-
-    public function __invoke(RegistrationRequest $registrationRequest): JsonResponse
-    {
-        return $this->theRepository->store($registrationRequest);
+        return $registrationAction->execute($registrationRequest);
     }
 }

@@ -9,6 +9,7 @@ Route::group(['prefix' => 'customers', 'as' => 'customers.'], function () {
     Route::group([], function () {
         Route::post('registration', \App\Http\Controllers\Customers\Registration\RegistrationController::class)->name('registration');
         Route::post('verification', \App\Http\Controllers\Customers\Registration\VerificationController::class)->name('verification');
+
         Route::post('login', \App\Http\Controllers\Customers\Authentication\LoginController::class)->name('login');
     });
 
