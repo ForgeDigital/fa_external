@@ -22,21 +22,38 @@ class RegistrationAction
     public function execute(RegistrationRequest $registrationRequest): JsonResponse
     {
         return DB::transaction(function () use ($registrationRequest) {
+
+            // Store the customer
             $stored = Customer::query()->create([
-                'first_name' => data_get($registrationRequest, 'data.attributes.first_name'),
-                'last_name' => data_get($registrationRequest, 'data.attributes.last_name'),
+                'first_name' => data_get($registrationRequest, key: 'data.attributes.first_name'),
+                'last_name' => data_get($registrationRequest, key: 'data.attributes.last_name'),
 
-                'phone' => data_get($registrationRequest, 'data.attributes.phone'),
-                'email' => data_get($registrationRequest, 'data.attributes.email'),
+                'phone' => data_get($registrationRequest, key: 'data.attributes.phone'),
+                'email' => data_get($registrationRequest, key: 'data.attributes.email'),
 
-                'password' => Hash::make(data_get($registrationRequest, 'data.attributes.password')),
+                'password' => Hash::make(data_get($registrationRequest, key: 'data.attributes.password')),
             ]);
 
+            // Create customer token
+            if ($stored) {
+
+            } else {
+                return $this->errorResponseBuilder(
+                    status: false,
+                    code: Response::HTTP_INTERNAL_SERVER_ERROR,
+                    message: 'Request unsuccessful.',
+                    description: 'Service is unavailable. Please retry again later.',
+                );
+            }
+
+            // Sent notifications (SMS and Email)
+
+            // Return the resourceResponseBuilder with the CustomerResource as data
             return $this->resourcesResponseBuilder(
                 status: true,
                 code: Response::HTTP_CREATED,
                 message: 'Request successful.',
-                description: 'Customer stored. Check email or SMS for verification token.',
+                description: 'CustomerStatus stored. Check email or SMS for verification token.',
                 data: (new CustomersResource($stored))
             );
         });

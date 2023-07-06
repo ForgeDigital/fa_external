@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             // Table ids
             $table->id();
-            $table->unsignedBigInteger('customer_id')->nullable();
             $table->uuid('resource_id')->unique()->nullable(false);
+            $table->unsignedBigInteger('customer_id')->unique();
 
             // Table main attributes
             $table->string('address');
@@ -27,6 +27,9 @@ return new class extends Migration
 
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
+
+            // Foreign key field
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
 
             // Table timestamps
             $table->timestamps();

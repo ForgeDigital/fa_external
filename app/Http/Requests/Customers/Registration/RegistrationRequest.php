@@ -17,11 +17,11 @@ class RegistrationRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException($this->unprocessableEntityResponseBuilder(
-            true,
-            Response::HTTP_UNPROCESSABLE_ENTITY,
-            'Unprocessable request.',
-            'The request is invalid. Check the request and try again.',
-            $validator->errors()->all()
+            status: true,
+            code: Response::HTTP_UNPROCESSABLE_ENTITY,
+            message: 'Unprocessable request.',
+            description: 'The request is invalid. Check the request and try again.',
+            error: $validator->errors()->all()
         ));
     }
 

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\CustomerStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -32,13 +33,10 @@ return new class extends Migration
             $table->string('password');
             $table->string('avatar')->nullable();
 
-            $table->string('verification_code')->unique()->nullable(true);
-            $table->dateTime('code_expiration_date')->nullable(true);
-
             $table->boolean('verified')->default(false);
             $table->string('verified_by')->unique()->nullable();
 
-            $table->string('status')->default('Pending');
+            $table->string('status')->default(CustomerStatus::Pending->value);
 
             // Table timestamps
             $table->timestamps();

@@ -7,7 +7,7 @@ namespace Database\Factories\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer\Customer>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CustomerStatus\CustomerStatus>
  */
 class CustomerFactory extends Factory
 {

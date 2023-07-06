@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Customers\Authentication;
 
+use App\Actions\Authentication\LoginAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Customers\Authentication\LoginRequest;
-use App\Actions\Authentication\LoginAction;
 use Illuminate\Http\JsonResponse;
 
 class LoginController extends Controller

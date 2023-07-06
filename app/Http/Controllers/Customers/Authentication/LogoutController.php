@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use App\Traits\v1\ResponseBuilder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class LogoutController extends Controller
 {

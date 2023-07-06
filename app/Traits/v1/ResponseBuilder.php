@@ -54,6 +54,20 @@ trait ResponseBuilder
         ]);
     }
 
+    public function errorResponseBuilder(bool $status, int $code, string $message, string $description = null): JsonResponse
+    {
+        return response()->json([
+            'status' => $status,
+            'code' => $code,
+            'message' => $message,
+            'description' => $description,
+            'meta' => [
+                'version' => '1.0',
+                'timestamp' => now()->toDateTime(),
+            ],
+        ]);
+    }
+
     public function tokenResponseBuilder(bool $status, int $code, string $message, mixed $token = null, mixed $user = null): JsonResponse
     {
         return response()->json([
