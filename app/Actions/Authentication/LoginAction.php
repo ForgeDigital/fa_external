@@ -17,7 +17,8 @@ class LoginAction
      */
     public function execute(LoginRequest $loginRequest): JsonResponse
     {
-        if (! $token = auth()->guard('customer')->attempt($loginRequest->validated()['data']['attributes'])) {
+        // Return authentication error response of password / email does not match
+        if (! $token = auth()->guard(name: 'customer')->attempt($loginRequest->validated()['data']['attributes'])) {
             return $this->resourcesResponseBuilder(
                 status: false,
                 code: Response::HTTP_UNAUTHORIZED,
@@ -26,6 +27,7 @@ class LoginAction
             );
         }
 
+        // Return tokenResponseBuilder after successful authentication
         return $this->tokenResponseBuilder(
             status: true,
             code: Response::HTTP_OK,
@@ -35,12 +37,13 @@ class LoginAction
         );
     }
 
+    // Generate bearer token
     protected function respondWithToken($token): JsonResponse
     {
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('customer')->factory()->getTTL() * 120, //mention the guard name inside the auth fn
+            'expires_in' => auth(guard: 'customer')->factory()->getTTL() * 120, //mention the guard name inside the auth fn
         ]);
     }
 }

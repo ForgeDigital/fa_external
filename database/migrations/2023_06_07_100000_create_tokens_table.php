@@ -15,14 +15,14 @@ return new class extends Migration
 
             // Table main attributes
             $table->string('email')->unique();
-            $table->string('token')->unique();
+            $table->integer('token')->unique();
             $table->dateTime('token_expiration_date');
 
             // Foreign key field
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
 
             // Table timestamps
-            $table->timestamp('created_at')->nullable();
+            $table->timestamps();
         });
     }
 

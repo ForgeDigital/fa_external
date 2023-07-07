@@ -22,7 +22,7 @@ class CheckValidationStatus implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        return empty(Customer::where([['resource_id', '=', $value], ['status', '!=', 'Pending']])->first());
+        return empty(Customer::where([['email', '=', $value], ['status', '!=', 'pending']])->first());
     }
 
     /**

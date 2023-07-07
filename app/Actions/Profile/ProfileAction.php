@@ -14,8 +14,15 @@ class ProfileAction
 
     public function execute(Request $request): JsonResponse
     {
+        // Get the customer data with the auth method
         $data = new CustomersResource(auth()->user());
 
-        return $this->resourcesResponseBuilder(true, Response::HTTP_OK, 'Request successful.', null, $data);
+        // Return resourceResponse with the customerResource as data
+        return $this->resourcesResponseBuilder(
+            status: true,
+            code: Response::HTTP_OK,
+            message: 'Request successful.',
+            data: $data
+        );
     }
 }

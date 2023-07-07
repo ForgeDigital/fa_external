@@ -4,21 +4,19 @@ declare(strict_types=1);
 
 namespace App\Models\Customer;
 
-use App\Models\Traits\HasUuid;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Token extends Model
 {
-    use HasFactory, HasUuid;
-
     protected $guarded = ['id'];
 
-    public function getRouteKeyName(): string
-    {
-        return 'resource_id';
-    }
+    protected $fillable = [
+        'customer_id',
+        'email',
+        'token',
+        'token_expiration_date',
+    ];
 
     public function customer(): BelongsTo
     {

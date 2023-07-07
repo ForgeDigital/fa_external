@@ -2,11 +2,11 @@
 
 namespace App\Rules\Customer;
 
-use App\Models\Customer\Customer;
+use App\Models\Customer\Token;
 use Carbon\Carbon;
 use Illuminate\Contracts\Validation\Rule;
 
-class CheckCodeExpiration implements Rule
+class CheckTokenExpiration implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,7 +26,7 @@ class CheckCodeExpiration implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        return empty(Customer::where('verification_code', '=', $value)->whereDate('code_expiration_date', '<', Carbon::now())->first());
+        return empty(Token::where('token', '=', $value)->whereDate('token_expiration_date', '<', Carbon::now())->first());
     }
 
     /**

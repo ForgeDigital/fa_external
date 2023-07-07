@@ -5,7 +5,9 @@ namespace App\Actions\Registration;
 use App\Http\Requests\Customers\Registration\RegistrationRequest;
 use App\Http\Resources\Customers\CustomersResource;
 use App\Models\Customer\Customer;
+use App\Models\Customer\Token;
 use App\Traits\v1\ResponseBuilder;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -34,9 +36,14 @@ class RegistrationAction
                 'password' => Hash::make(data_get($registrationRequest, key: 'data.attributes.password')),
             ]);
 
-            // Create customer token
+            // Create customer token or return an errorResponseBuilder
             if ($stored) {
-
+                Token::query()->create([
+                    'customer_id' => data_get($stored, key: 'id'),
+                    'email' => data_get($stored, key: 'email'),
+                    'token' => 784728, // TODO: Create a generateToken trait
+                    'token_expiration_date' => Carbon::now()->addDays(),
+                ]);
             } else {
                 return $this->errorResponseBuilder(
                     status: false,
@@ -47,6 +54,7 @@ class RegistrationAction
             }
 
             // Sent notifications (SMS and Email)
+            // TODO: Create the token notification event
 
             // Return the resourceResponseBuilder with the CustomerResource as data
             return $this->resourcesResponseBuilder(

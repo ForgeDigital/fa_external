@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Customers\Registration;
 
-use App\Rules\Customer\CheckTokenExpiration;
 use App\Rules\Customer\CheckValidationStatus;
 use App\Traits\v1\ResponseBuilder;
 use Illuminate\Contracts\Validation\Validator;
@@ -12,7 +11,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerificationRequest extends FormRequest
+class TokenRequest extends FormRequest
 {
     use ResponseBuilder;
 
@@ -47,7 +46,6 @@ class VerificationRequest extends FormRequest
             'data.type' => ['required', 'string', 'in:Customers'],
 
             'data.attributes.email' => ['required', 'exists:customers,email', new CheckValidationStatus],
-            'data.attributes.token' => ['required', 'integer', 'exists:tokens,token',  new CheckTokenExpiration],
         ];
     }
 
@@ -64,11 +62,7 @@ class VerificationRequest extends FormRequest
             'data.type.in' => 'The type is invalid.',
 
             'data.attributes.email.required' => 'The email is required.',
-            'data.attributes.email.exists' => 'The email is invalid.',
-
-            'data.attributes.token.required' => 'The verification token is required.',
-            'data.attributes.token.integer' => 'The verification token must be an integer value.',
-            'data.attributes.token.exists' => 'The verification token is invalid.',
+            'data.attributes.email.exists' => 'The email does not exist.',
         ];
     }
 }
