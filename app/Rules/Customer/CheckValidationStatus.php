@@ -2,6 +2,7 @@
 
 namespace App\Rules\Customer;
 
+use App\Enums\CustomerStatus;
 use App\Models\Customer\Customer;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -22,7 +23,7 @@ class CheckValidationStatus implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        return empty(Customer::where([['email', '=', $value], ['status', '!=', 'pending']])->first());
+        return empty(Customer::where([['email', '=', $value], ['status', '!=', CustomerStatus::Pending->value]])->first());
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Rules\Customer;
 
+use App\Enums\CustomerStatus;
 use App\Models\Customer\Customer;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -22,7 +23,7 @@ class CheckAccountPending implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        return empty(Customer::where('phone', '=', $value)->orWhere('email', '=', $value)->where('status', '=', 'Pending')->first());
+        return empty(Customer::where('phone', '=', $value)->orWhere('email', '=', $value)->where('status', '=', CustomerStatus::Pending->value)->first());
     }
 
     /**

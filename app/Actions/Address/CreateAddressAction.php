@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Actions\Address;
 
 use App\Http\Resources\Customers\Address\AddressResource;
-use App\Models\Address\Address;
 use App\Traits\v1\ResponseBuilder;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -23,8 +22,11 @@ class CreateAddressAction
     {
         return DB::transaction(function () use ($request) {
 
-            // Store the customer address
-            $stored = Address::query()->create([
+            // Get customer
+            $customer = $request->user();
+
+            // Update of store the customer address
+            $stored = $customer->address()->updateOrCreate(['customer_id' => $request->user()->id], [
                 'customer_id' => $request->user()->id,
                 'address' => data_get($request, key: 'data.attributes.address'),
                 'city' => data_get($request, key: 'data.attributes.city'),

@@ -63,7 +63,7 @@ class VerificationAction
                 status: true,
                 code: Response::HTTP_CREATED,
                 message: 'Request successful.',
-                description: 'Customer is successfully verified. Notification is sent to your email.',
+                description: 'Customer is successfully verified. Confirmation is sent to your email.',
                 data: (new CustomersResource($customer->refresh()))
             );
         });

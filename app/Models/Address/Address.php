@@ -17,6 +17,8 @@ class Address extends Model
 
     protected $guarded = ['id'];
 
+    public $incrementing = false;
+
     public function getRouteKeyName(): string
     {
         return 'resource_id';
