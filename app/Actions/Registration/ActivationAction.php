@@ -3,17 +3,18 @@
 namespace App\Actions\Registration;
 
 use App\Enums\CustomerStatus;
-use App\Http\Requests\Customers\Registration\VerificationRequest;
+use App\Http\Requests\Customers\Registration\ActivationRequest;
 use App\Http\Resources\Customers\CustomersResource;
 use App\Models\Customer\Customer;
 use App\Models\Customer\Token;
+use App\Notifications\Customer\Registration\WelcomeNotification;
 use App\Traits\v1\ResponseBuilder;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
-class VerificationAction
+class ActivationAction
 {
     use ResponseBuilder;
 
@@ -24,7 +25,7 @@ class VerificationAction
     /**
      * @throws Throwable
      */
-    public function execute(VerificationRequest $request): JsonResponse
+    public function execute(ActivationRequest $request): JsonResponse
     {
         return DB::transaction(function () use ($request) {
 
@@ -37,26 +38,22 @@ class VerificationAction
                     key: 'data.attributes.email')
             )->first();
 
-            // If a customer is found, update its statuses
-            if ($customer) {
-                $this->validated = Customer::query()->update([
-                    'verified' => true,
-                    'status' => CustomerStatus::Active->value,
-                ]);
-            }
-
-            // Delete customer token record
-            if ($this->validated) {
-                Token::query()->where(
-                    column: 'email',
-                    operator: '=', value: data_get(
-                        target: $customer,
-                        key: 'email')
-                )->delete();
-            }
+            // Update its status to active
+            Customer::query()->update([
+                'verified' => true,
+                'status' => CustomerStatus::Active->value,
+            ]);
 
             // Send welcome notification
-            // TODO: create welcome notification event
+            $customer->notify(instance: new WelcomeNotification(customer: $customer->toArray()));
+
+            // Delete customer token record
+            Token::query()->where(
+                column: 'email',
+                operator: '=', value: data_get(
+                    target: $customer,
+                    key: 'email')
+            )->delete();
 
             // Return the resourceResponseBuilder with the CustomerResource as data
             return $this->resourcesResponseBuilder(
@@ -64,7 +61,7 @@ class VerificationAction
                 code: Response::HTTP_CREATED,
                 message: 'Request successful.',
                 description: 'Customer is successfully verified. Confirmation is sent to your email.',
-                data: (new CustomersResource($customer->refresh()))
+                data: new CustomersResource($customer->refresh())
             );
         });
     }

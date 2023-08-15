@@ -9,11 +9,12 @@ use App\Models\Address\Address;
 use App\Models\Traits\HasPassword;
 use App\Models\Traits\HasUuid;
 use App\Models\User;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Customer extends User
+class Customer extends User implements ShouldQueue
 {
     use HasFactory, SoftDeletes, HasUuid, HasPassword;
 
@@ -32,11 +33,11 @@ class Customer extends User
 
     public function address(): HasOne
     {
-        return $this->hasOne(Address::class, 'customer_id');
+        return $this->hasOne(related: Address::class, foreignKey: 'customer_id');
     }
 
     public function token(): HasOne
     {
-        return $this->hasOne(Token::class, 'customer_id');
+        return $this->hasOne(related: Token::class, foreignKey: 'customer_id');
     }
 }

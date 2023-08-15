@@ -12,7 +12,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerificationRequest extends FormRequest
+class ActivationRequest extends FormRequest
 {
     use ResponseBuilder;
 

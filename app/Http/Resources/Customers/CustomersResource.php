@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\Customers;
 
+use App\Http\Resources\Customers\Address\AddressResource;
 use App\Models\Customer\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -47,6 +48,19 @@ class CustomersResource extends JsonResource
 
             // Resource relationships
             'relationships' => [
+                //                'address' => new AddressResource($this->whenLoaded('address')),
+                'address' => [
+                    'links' => [
+                        'self' => $request->getBaseUrl(),
+                        'related' => 'address related link',
+                    ],
+                ],
+                'country' => [
+                    'links' => [
+                        'self' => 'country self link',
+                        'related' => 'country related link',
+                    ],
+                ],
             ],
 
             // Included data per request

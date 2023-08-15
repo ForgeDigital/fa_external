@@ -17,8 +17,8 @@ class TokenController extends Controller
      *
      * @throws Throwable
      */
-    public function __invoke(TokenRequest $request, TokenAction $tokenAction): JsonResponse
+    public function __invoke(TokenRequest $request, TokenAction $action): JsonResponse
     {
-        return $tokenAction->execute($request);
+        return $action->execute(email: data_get(target: $request, key: 'data.attributes.email'));
     }
 }
