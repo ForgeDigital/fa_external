@@ -18,7 +18,7 @@ Route::group(['prefix' => 'users/authentication', 'as' => 'users.authentication.
     });
 
     // Protected routes
-    Route::group(['middleware' => 'auth:customer'], function () {
+    Route::group(['middleware' => 'auth:user'], function () {
         Route::post(
             uri: 'logout',
             action: LogoutController::class
