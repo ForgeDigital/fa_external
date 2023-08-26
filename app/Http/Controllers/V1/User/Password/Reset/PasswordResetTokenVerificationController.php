@@ -5,22 +5,22 @@ declare(strict_types=1);
 namespace App\Http\Controllers\V1\User\Password\Reset;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\V1\User\Password\PasswordResetRequest;
+use App\Http\Requests\V1\User\Password\PasswordResetTokenVerificationRequest;
 use App\Traits\V1\ResponseBuilder;
-use Domain\User\Jobs\Password\PasswordResetRequestJob;
+use Domain\User\Jobs\Password\PasswordResetTokenVerificationJob;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class PasswordResetRequestController extends Controller
+class PasswordResetTokenVerificationController extends Controller
 {
     use ResponseBuilder;
 
-    public function __invoke(PasswordResetRequest $request): JsonResponse
+    public function __invoke(PasswordResetTokenVerificationRequest $request): JsonResponse
     {
-        // Execute the password request action
-        PasswordResetRequestJob::dispatch(request: $request->validated());
+        // Execute the change password action
+        PasswordResetTokenVerificationJob::dispatch(request: $request->validated());
 
-        // Return the resourceResponseBuilder with the CustomerResource as data
+        // Return the resourceResponseBuilder in JsonResponse
         return $this->resourcesResponseBuilder(
             status: true,
             code: Response::HTTP_ACCEPTED,

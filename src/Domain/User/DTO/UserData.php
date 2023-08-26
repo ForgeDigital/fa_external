@@ -3,7 +3,6 @@
 namespace Domain\User\DTO;
 
 use Carbon\Carbon;
-use Domain\User\Enums\UserStatus;
 use Spatie\LaravelData\Data;
 
 class UserData extends Data
@@ -24,7 +23,7 @@ class UserData extends Data
 
         public readonly ?string $avatar,
 
-        public readonly ?UserStatus $status,
+        public readonly ?string $status,
 
         public readonly ?Carbon $created_at,
         public readonly ?Carbon $updated_at,

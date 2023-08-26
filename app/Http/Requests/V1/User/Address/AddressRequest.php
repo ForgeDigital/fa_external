@@ -2,25 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\User\Address;
+namespace App\Http\Requests\V1\User\Address;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\V1\Common\ApiRequest;
 
-class AddressRequest extends FormRequest
+class AddressRequest extends ApiRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
     public function rules(): array
     {
         return [

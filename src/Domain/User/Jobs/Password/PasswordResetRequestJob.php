@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Jobs\Registration;
+namespace Domain\User\Jobs\Password;
 
-use App\Notifications\User\Registration\SendNewTokenNotification;
+use App\Notifications\User\Password\PasswordResetRequestNotification;
 use Domain\User\Actions\Common\FetchUserAction;
 use Domain\User\Actions\Token\GenerateTokenAction;
 use Illuminate\Bus\Queueable;
@@ -13,34 +13,26 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class NewTokenJob implements ShouldQueue
+class PasswordResetRequestJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected array $request;
 
-    /**
-     * Create a new job instance.
-     */
     public function __construct(array $request)
     {
         $this->request = $request;
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
-        // Fetch the user
+        // Get the customer data by email
         $user = FetchUserAction::execute(request: $this->request);
 
-        // Publish the UserCreatedMessage to all microservices (Message Broker coming soon)
-
-        // Generate a token
+        // Generate a new token
         $token = GenerateTokenAction::execute(user: $user);
 
-        // Publish SendNewTokenNotificationMessage to the notification service (Message Broker coming soon)
-        $user->notify(instance: new SendNewTokenNotification(user: $user->toArray(), token: $token->toArray()));
+        // Dispatch a PasswordResetRequestNotification to the notification service
+        $user->notify(new PasswordResetRequestNotification(user: $user->toArray(), token: $token->toArray()));
     }
 }

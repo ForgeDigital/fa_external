@@ -44,43 +44,41 @@
 
                                 <!-- Begin main message -->
                                 <div style="">
-                                    <div style="box-sizing:border-box;padding:0;font-size:14px;vertical-align:top">
-                                        <div id="m_2212878593585876492block-one" style="box-sizing:border-box">
-                                            <h2 style="margin: 0 0 30px; font-weight:300; line-height:1.5; font-size:24px; color:#294661!important">
+                                    <div style="box-sizing: border-box; padding: 0; font-size: 14px; vertical-align: top">
+                                        <div style="box-sizing: border-box">
+                                            <h2 style="margin: 0 0 30px; font-weight :300; line-height: 1.5; font-size: 24px; color:#294661!important">
                                                 Hi {{ $user_data['first_name'] }},
                                             </h2>
-                                            <p style="margin: 20px 0; color:#294661; font-size:14px; font-weight:300;line-height: 1.8;">
-                                                Welcome to <a href="https://forge.africa/" title="Click this link" style="color: #348eda; font-weight: 400; text-decoration: none" target="_blank">Forge</a>.
-                                            </p>
-                                            <p style="margin: 20px 0; color:#294661; font-size:14px; font-weight:300; line-height: 1.8;">
-                                                You have requested to reset your password. User the following code to reset your account password. This code is valid for 48hrs.
+                                            <p style="margin: 0 0 30px;color: #294661; font-size: 14px; font-weight: 300">
+                                                Your password was reset successfully.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- End main message -->
 
-                                <!-- Begin OTP -->
-                                <div style="box-sizing: border-box; padding: 0; font-size: 12px; margin: 30px auto;">
-                                    <div style="box-sizing: border-box; margin: auto;">
-                                        <div style="width: 25%; margin: auto; padding: 5px 30px; text-align: center; border:1px solid #f0f0f0; font-size: 25px; color: #718096; letter-spacing: 8px; font-weight: bolder; line-height: 1.8">
-                                            {{$token_data['token']}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End OTP -->
-
                                 <!-- Begin second message -->
-                                <div style="">
-                                    <div style="box-sizing: border-box; padding: 0; font-size: 14px; vertical-align: top">
-                                        <div style="box-sizing: border-box">
-                                            <p style="margin: 20px 0; color:#294661; font-size:14px; font-weight:300;line-height: 1.8;">
-                                                If you did not make this request, your password will remain the same. For increased security, you can enable Two-Factor Authentication in settings on the Forge App.
-                                            </p>
-                                        </div>
+                                <div class="">
+                                    <div style="box-sizing: border-box; padding: 0; font-size: 14px; vertical-align:top">
+                                        <p style="margin: 0 0 30px; color: #294661; font-size: 14px; font-weight:300; line-height: 1.8">
+                                            Remember, always keep your email and password private. Forge representatives will never ask or call you for your password.
+                                        </p>
+                                        <p style="margin: 0 0 30px; color: #294661; font-size: 14px; font-weight:300; line-height: 1.8">
+                                            Thanks for being part of the Forge community.
+                                        </p>
                                     </div>
                                 </div>
                                 <!-- End second message -->
+
+                                <!-- Begin third message -->
+                                <div class="">
+                                    <div style="box-sizing:border-box;padding:0;font-size:14px;vertical-align:top">
+                                        <p style="margin: 0 0 30px; color: #294661; font-size: 14px; font-weight:300; line-height: 1.8">
+                                            If you have any issues logging into your account, we will be happy to help you. You can contact us via <a href="mail:support@forge.africa" target="_blank">support@forge.africa</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- End third message -->
 
                                 <!-- Begin last content -->
                                 @include('Common.pageMessageEnd')

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules\V1\User\Authentication;
+namespace App\Rules\V1\User\Common;
 
 use Closure;
 use Domain\User\Enums\UserStatus;

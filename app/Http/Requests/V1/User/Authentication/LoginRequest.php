@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\V1\User\Authentication;
 
 use App\Http\Requests\V1\Common\ApiRequest;
-use App\Rules\V1\User\Authentication\UserNotActiveRules;
+use App\Rules\V1\User\Common\UserNotActiveRules;
 
 class LoginRequest extends ApiRequest
 {

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Rules\V1\User\Registration;
+namespace App\Rules\V1\User\Password;
 
-use Carbon\Carbon;
 use Closure;
 use Domain\User\Models\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class ActivationRules implements ValidationRule
+class IsTokenVerifiedRules implements ValidationRule
 {
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
@@ -17,8 +16,8 @@ class ActivationRules implements ValidationRule
         // Validation conditions
         if (data_get(target: $user, key: 'token') === null) {
             $fail('Invalid activation token.');
-        } elseif (data_get(target: $user, key: 'token.token_expiration_date') < Carbon::now()) {
-            $fail('This activation token has expired.');
+        } elseif (data_get(target: $user, key: 'is_verified') === false) {
+            $fail('There is not token verification.');
         }
     }
 }

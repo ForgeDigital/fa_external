@@ -7,8 +7,11 @@ namespace App\Http\Requests\V1\User\Password;
 use App\Http\Requests\V1\Common\ApiRequest;
 use App\Rules\V1\User\Common\UserNotActiveRules;
 
-class PasswordResetRequest extends ApiRequest
+class PasswordRequest extends ApiRequest
 {
+    /**
+     * Determine if the user is authorized to make this request.
+     */
     public function authorize(): bool
     {
         return true;
@@ -31,7 +34,6 @@ class PasswordResetRequest extends ApiRequest
 
             'data.type.required' => 'The type is required',
             'data.type.string' => 'The type must be of a string',
-            'data.type.in' => 'The resource type is invalid',
 
             'data.attributes.email.required' => 'The email is required.',
             'data.attributes.email.exists' => 'The email does not exist.',

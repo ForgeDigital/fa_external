@@ -8,18 +8,15 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PasswordResetRequestNotification extends Notification
+class PasswordResetConfirmationNotification extends Notification
 {
     use Queueable;
 
     protected array $user;
 
-    protected array $token;
-
-    public function __construct(array $user, array $token)
+    public function __construct(array $user)
     {
         $this->user = $user;
-        $this->token = $token;
     }
 
     public function via(object $notifiable): array
@@ -29,7 +26,7 @@ class PasswordResetRequestNotification extends Notification
 
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)->view(view: 'User.Password.PasswordResetRequest', data: ['user_data' => $this->user, 'token_data' => $this->token])->subject(subject: 'Password Reset');
+        return (new MailMessage)->view(view: 'User.Password.PasswordResetConfirmation', data: ['user_data' => $this->user])->subject(subject: 'Password Reset');
     }
 
     public function toArray(object $notifiable): array
