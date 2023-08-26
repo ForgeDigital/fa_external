@@ -16,8 +16,8 @@ class UserNotActiveRules implements ValidationRule
 
         // Validation conditions
         if ($user_status == null) {
-            $fail("The email is invalid.");
-        }elseif (data_get(target: $user_status, key: 'status') !== UserStatus::Active->value) {
+            $fail('The email is invalid.');
+        } elseif (data_get(target: $user_status, key: 'status') !== UserStatus::Active->value) {
             $fail("The account is {$user_status['status']}.");
         }
     }
