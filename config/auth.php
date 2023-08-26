@@ -41,9 +41,9 @@ return [
             'provider' => 'users',
         ],
 
-        'customer' => [
+        'user' => [
             'driver' => 'jwt',
-            'provider' => 'customers',
+            'provider' => 'users',
         ],
 
         'staff' => [
@@ -72,17 +72,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
-
-        'customers' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Customer\Customer::class,
+            'model' => \Domain\User\Models\User::class,
         ],
 
         'staffs' => [
             'driver' => 'eloquent',
-            //            'model' => App\Models\CustomerStatus\CustomerStatus::class,
+            //            'model' => App\Models\Usertatus\Usertatus::class,
         ],
     ],
 

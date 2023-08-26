@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Seeders\Addresses;
 
-use App\Models\Address\Address;
 use Database\Seeders\Traits\ForeignKeyChecks;
 use Database\Seeders\Traits\TruncateTable;
+use Domain\User\Models\Address;
 use Illuminate\Database\Seeder;
 
 class AddressesSeeder extends Seeder

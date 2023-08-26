@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Database\Seeders\Addresses\AddressesSeeder;
 use Database\Seeders\Countries\CountriesTableSeeder;
-use Database\Seeders\Customers\CustomersSeeder;
+use Database\Seeders\User\UserSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(CountriesTableSeeder::class);
+        $this->call(class: CountriesTableSeeder::class);
         //        $this->call(AddressesSeeder::class);
-        //        $this->call(CustomersSeeder::class);
+        //        $this->call(UserSeeder::class);
     }
 }

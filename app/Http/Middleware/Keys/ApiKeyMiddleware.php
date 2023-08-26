@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware\Keys;
 
-use App\Traits\v1\ResponseBuilder;
+use App\Traits\V1\ResponseBuilder;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;

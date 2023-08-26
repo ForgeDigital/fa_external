@@ -13,23 +13,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create(table: 'addresses', callback: function (Blueprint $table) {
             // Table ids
             $table->id();
-            $table->uuid('resource_id')->unique()->nullable(false);
-            $table->unsignedBigInteger('customer_id')->unique();
+            $table->uuid(column: 'resource_id')->unique()->nullable(value: false);
+            $table->unsignedBigInteger(column: 'user_id')->unique();
 
             // Table main attributes
-            $table->string('address');
-            $table->string('city');
-            $table->string('state');
-            $table->string('code')->nullable();
+            $table->string(column: 'address');
+            $table->string(column: 'city');
+            $table->string(column: 'state');
+            $table->string(column: 'code')->nullable();
 
-            $table->string('longitude')->nullable();
-            $table->string('latitude')->nullable();
+            $table->string(column: 'longitude')->nullable();
+            $table->string(column: 'latitude')->nullable();
 
             // Foreign key field
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign(columns: 'user_id')->references(columns: 'id')->on(table: 'users')->onDelete(action: 'cascade');
 
             // Table timestamps
             $table->timestamps();
@@ -42,6 +42,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists(table: 'addresses');
     }
 };

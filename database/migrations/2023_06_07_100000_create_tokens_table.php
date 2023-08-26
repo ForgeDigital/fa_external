@@ -8,18 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('tokens', function (Blueprint $table) {
+        Schema::create(table: 'tokens', callback: function (Blueprint $table) {
             // Table ids
             $table->id();
-            $table->unsignedBigInteger('customer_id')->unique();
+            $table->unsignedBigInteger(column: 'user_id')->unique();
 
             // Table main attributes
-            $table->string('email')->unique();
-            $table->integer('token')->unique();
-            $table->dateTime('token_expiration_date');
+            $table->integer(column: 'token')->unique();
+            $table->dateTime(column: 'token_expiration_date');
+            $table->boolean(column: 'is_verified')->default(value: false);
 
             // Foreign key field
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign(columns: 'user_id')->references(columns: 'id')->on(table: 'users')->onDelete(action: 'cascade');
 
             // Table timestamps
             $table->timestamps();
@@ -28,6 +28,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('tokens');
+        Schema::dropIfExists(table: 'tokens');
     }
 };

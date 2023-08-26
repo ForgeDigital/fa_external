@@ -11,32 +11,32 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create(table: 'countries', callback: function (Blueprint $table) {
             // Table ids
             $table->id();
-            $table->uuid('resource_id')->unique()->nullable(false);
+            $table->uuid(column: 'resource_id')->unique()->nullable(value: false);
 
             // Table main attributes
-            $table->string('name');
-            $table->string('iso3');
-            $table->string('iso2');
-            $table->string('phone_code');
-            $table->string('capital');
-            $table->string('currency');
-            $table->string('currency_symbol');
-            $table->string('tld');
-            $table->string('native')->nullable();
-            $table->string('region');
-            $table->string('subregion');
-            $table->text('timezones');
-            $table->text('translations')->nullable();
-            $table->text('latitude');
-            $table->text('longitude');
-            $table->text('emoji');
-            $table->text('emojiU');
-            $table->string('status')->default('Active');
-            $table->boolean('flag')->default(false);
-            $table->text('wikiDataId')->nullable();
+            $table->string(column: 'name');
+            $table->string(column: 'iso3');
+            $table->string(column: 'iso2');
+            $table->string(column: 'phone_code');
+            $table->string(column: 'capital');
+            $table->string(column: 'currency');
+            $table->string(column: 'currency_symbol');
+            $table->string(column: 'tld');
+            $table->string(column: 'native')->nullable();
+            $table->string(column: 'region');
+            $table->string(column: 'subregion');
+            $table->text(column: 'timezones');
+            $table->text(column: 'translations')->nullable();
+            $table->text(column: 'latitude');
+            $table->text(column: 'longitude');
+            $table->text(column: 'emoji');
+            $table->text(column: 'emojiU');
+            $table->string(column: 'status')->default(value: 'Active');
+            $table->boolean(column: 'flag')->default(value: false);
+            $table->text(column: 'wikiDataId')->nullable();
 
             // Timestamps
             $table->timestamps();
@@ -49,6 +49,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists(table: 'countries');
     }
 };

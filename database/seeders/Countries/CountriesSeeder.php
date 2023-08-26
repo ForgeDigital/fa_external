@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Seeders\Countries;
 
-use App\Models\Country\Country;
 use Database\Seeders\Traits\ForeignKeyChecks;
 use Database\Seeders\Traits\TruncateTable;
+use Domain\Shared\Models\Country;
 use Illuminate\Database\Seeder;
 
 class CountriesSeeder extends Seeder
