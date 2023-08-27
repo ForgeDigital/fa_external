@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class FetchUserAction
 {
-    public static function execute(array $request = null): User|Authenticatable
+    public static function execute(array $request = null): User
     {
         // Get the customer when logged in
         if (auth(guard: 'user')->check()) {
-            return Auth::user();
+            $user = auth()->user();
+            return User::find(data_get(target: $user, key: 'id'));
         } else {
             // Get the customer with the email id
             return User::where(

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\V1\User\Password;
+namespace App\Http\Requests\V1\User\Password\Change;
 
 use App\Http\Requests\V1\Common\ApiRequest;
 use App\Rules\V1\User\Common\UserNotActiveRules;
 
-class PasswordRequest extends ApiRequest
+class ChangePasswordRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,8 @@ class PasswordRequest extends ApiRequest
             'data' => ['required'],
             'data.type' => ['required', 'string', 'in:User'],
 
-            'data.attributes.email' => ['required', 'exists:users,email', new UserNotActiveRules],
+            'data.attributes.current_password' => ['required'],
+            'data.attributes.password' => ['required'],
         ];
     }
 
@@ -35,8 +36,8 @@ class PasswordRequest extends ApiRequest
             'data.type.required' => 'The type is required',
             'data.type.string' => 'The type must be of a string',
 
-            'data.attributes.email.required' => 'The email is required.',
-            'data.attributes.email.exists' => 'The email does not exist.',
+            'data.attributes.current_password.required' => 'The current password is required.',
+            'data.attributes.password.required' => 'The new password is required.',
         ];
     }
 }

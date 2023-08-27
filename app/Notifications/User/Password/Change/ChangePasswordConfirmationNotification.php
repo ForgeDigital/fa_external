@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Notifications\User\Password;
+namespace App\Notifications\User\Password\Change;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PasswordResetConfirmationNotification extends Notification
+class ChangePasswordConfirmationNotification extends Notification
 {
     use Queueable;
 
@@ -26,7 +26,7 @@ class PasswordResetConfirmationNotification extends Notification
 
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)->view(view: 'User.Password.PasswordResetConfirmation', data: ['user_data' => $this->user])->subject(subject: 'Password Reset');
+        return (new MailMessage)->view(view: 'User.Password.ChangePasswordConfirmation', data: ['user_data' => $this->user])->subject(subject: 'Change Password');
     }
 
     public function toArray(object $notifiable): array

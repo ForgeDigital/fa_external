@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\V1\User\Password\Reset;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\V1\User\Password\PasswordResetTokenVerificationRequest;
+use App\Http\Requests\V1\User\Password\Reset\PasswordResetTokenVerificationRequest;
 use App\Traits\V1\ResponseBuilder;
-use Domain\User\Jobs\Password\PasswordResetTokenVerificationJob;
+use Domain\User\Jobs\Password\Reset\PasswordResetTokenVerificationJob;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 

@@ -2,30 +2,31 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\V1\User\Password\Reset;
+namespace App\Http\Controllers\V1\User\Password\Change;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\User\Password\Change\ChangePasswordRequest;
 use App\Http\Requests\V1\User\Password\Reset\PasswordResetRequest;
 use App\Traits\V1\ResponseBuilder;
-use Domain\User\Jobs\Password\Reset\PasswordResetJob;
+use Domain\User\Jobs\Password\Change\ChangePasswordJob;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class PasswordResetController extends Controller
+class ChangePasswordController extends Controller
 {
     use ResponseBuilder;
 
-    public function __invoke(PasswordResetRequest $request): JsonResponse
+    public function __invoke(ChangePasswordRequest $request): JsonResponse
     {
         // Dispatch PasswordReset job
-        PasswordResetJob::dispatch(request: $request->validated());
+        ChangePasswordJob::dispatch(request: $request->validated());
 
         // Return the resourceResponseBuilder with the CustomerResource as data
         return $this->resourcesResponseBuilder(
             status: true,
-            code: Response::HTTP_ACCEPTED,
+            code: Response::HTTP_OK,
             message: 'Request successful.',
-            description: 'Password has been reset successfully.',
+            description: 'Password has been changed successfully.',
         );
     }
 }

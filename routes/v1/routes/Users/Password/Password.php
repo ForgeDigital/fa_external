@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\V1\User\Password\Change\ChangePasswordController;
 use App\Http\Controllers\V1\User\Password\Reset\PasswordResetController;
 use App\Http\Controllers\V1\User\Password\Reset\PasswordResetRequestController;
 use App\Http\Controllers\V1\User\Password\Reset\PasswordResetTokenVerificationController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'users/password/reset', 'as' => 'user.password.'], function () {
+Route::group(['prefix' => 'users/password', 'as' => 'user.password.'], function () {
     // Unprotected routes
-    Route::group([], function () {
+    Route::group(['prefix' => 'reset'], function () {
         Route::post(
             uri: 'request',
             action: PasswordResetRequestController::class
@@ -31,6 +32,12 @@ Route::group(['prefix' => 'users/password/reset', 'as' => 'user.password.'], fun
     });
 
     // Protected routes
-    Route::group(['middleware' => 'auth:customer'], function () {
+    Route::group(['middleware' => 'auth:user'], function () {
+        Route::post(
+            uri: 'change',
+            action: ChangePasswordController::class
+        )->name(
+            name: 'change'
+        );
     });
 });

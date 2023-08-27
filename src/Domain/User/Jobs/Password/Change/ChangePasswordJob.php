@@ -2,20 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Jobs\Password;
+namespace Domain\User\Jobs\Password\Change;
 
-use App\Notifications\User\Password\PasswordResetConfirmationNotification;
+use App\Notifications\User\Password\Change\ChangePasswordConfirmationNotification;
 use Domain\User\Actions\Common\FetchUserAction;
 use Domain\User\Actions\Password\UpdatePasswordAction;
-use Domain\User\Actions\Token\DeleteTokenAction;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Throwable;
 
-class PasswordResetJob implements ShouldQueue
+class ChangePasswordJob implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -29,21 +27,15 @@ class PasswordResetJob implements ShouldQueue
         $this->request = $request;
     }
 
-    /**
-     * @throws Throwable
-     */
     public function handle(): void
     {
-        // Get the user
-        $user = FetchUserAction::execute(request: $this->request);
+        // Get
+        $user = FetchUserAction::execute();
 
         // Execute the UpdatePasswordAction
         UpdatePasswordAction::execute(user: $user, request: $this->request);
 
-        // Publish the PasswordResetConfirmationNotification to the notification service
-        $user->notify(new PasswordResetConfirmationNotification(user: $user->toArray()));
-
-        // Delete the token
-        DeleteTokenAction::execute(user: $user);
+        // Publish the ChangePasswordConfirmationNotification to the notification service
+        $user->notify(new ChangePasswordConfirmationNotification(user: $user->toArray()));
     }
 }

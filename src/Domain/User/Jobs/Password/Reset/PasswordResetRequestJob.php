@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Jobs\Password;
+namespace Domain\User\Jobs\Password\Reset;
 
-use App\Notifications\User\Password\PasswordResetRequestNotification;
+use App\Notifications\User\Password\Reset\PasswordResetRequestNotification;
 use Domain\User\Actions\Common\FetchUserAction;
 use Domain\User\Actions\Token\GenerateTokenAction;
 use Illuminate\Bus\Queueable;

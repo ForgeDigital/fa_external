@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\V1\User\Password\Reset;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\V1\User\Password\PasswordResetRequest;
+use App\Http\Requests\V1\User\Password\Reset\PasswordResetRequest;
 use App\Traits\V1\ResponseBuilder;
-use Domain\User\Jobs\Password\PasswordResetRequestJob;
+use Domain\User\Jobs\Password\Reset\PasswordResetRequestJob;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 

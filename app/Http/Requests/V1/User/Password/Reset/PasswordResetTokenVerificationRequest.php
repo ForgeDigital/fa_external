@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\V1\User\Password;
+namespace App\Http\Requests\V1\User\Password\Reset;
 
 use App\Http\Requests\V1\Common\ApiRequest;
 
