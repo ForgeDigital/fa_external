@@ -6,7 +6,6 @@ namespace App\Http\Controllers\V1\User\Password\Change;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\User\Password\Change\ChangePasswordRequest;
-use App\Http\Requests\V1\User\Password\Reset\PasswordResetRequest;
 use App\Traits\V1\ResponseBuilder;
 use Domain\User\Jobs\Password\Change\ChangePasswordJob;
 use Symfony\Component\HttpFoundation\JsonResponse;

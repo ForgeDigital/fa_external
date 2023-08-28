@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Requests\V1\User\Password\Change;
 
 use App\Http\Requests\V1\Common\ApiRequest;
-use App\Rules\V1\User\Common\UserNotActiveRules;
 
 class ChangePasswordRequest extends ApiRequest
 {

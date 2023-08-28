@@ -3,8 +3,6 @@
 namespace Domain\User\Actions\Common;
 
 use Domain\User\Models\User;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\Auth;
 
 class FetchUserAction
 {
@@ -13,6 +11,7 @@ class FetchUserAction
         // Get the customer when logged in
         if (auth(guard: 'user')->check()) {
             $user = auth()->user();
+
             return User::find(data_get(target: $user, key: 'id'));
         } else {
             // Get the customer with the email id
