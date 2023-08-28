@@ -19,7 +19,7 @@ class FetchProfileController extends Controller
         // Return a "request successful" response
         return $this->resourcesResponseBuilder(
             status: true,
-            code: Response::HTTP_ACCEPTED,
+            code: Response::HTTP_OK,
             message: 'Request successful.',
             description: '',
             data: new UserResource(auth(guard: 'user')->user())
